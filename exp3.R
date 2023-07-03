@@ -15,7 +15,7 @@ x_4<-sim.ssarima(frequency=12,orders=list(ma=c(2,2)),lags = c(1,12),MA=c(0.1,0.2
 x_5<-sim.ssarima(frequency=12,orders=list(ar=c(1,0),ma=c(1,1)),lags = c(1,12),AR=c(0.3,0.1),MA=c(0.1,0.2),obs = 500,constant = 500,mean=0,sd=50)$data
 be<-runif(4,0.25,0.75)
 demand_series<-ts(be[1]*x_1+be[2]*x_2+be[3]*x_3+be[4]*x_4+rnorm(500,0,100)+
-                    rlaplace(500,0,71)+runif(500,-50,50),start = c(1,1),frequency = 12)
+                    rlaplace(500,0,71)+100*rt(500,5),start = c(1,1),frequency = 12)
 series<-data.frame(x_1,x_2,x_3,x_4,x_5,demand_series)
 
 drawseries<-data.frame(series,year=time(demand_series))
